@@ -1,49 +1,40 @@
 <?php
-$err=false;
-$signup=true;
-if($_SERVER["REQUEST_METHOD"]=="POST" && $_POST["action"]=="signup") //for user signup
+$err = false;
+$signup = true;
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "signup") //for user signup
 {
 
-    $usr=$_POST["username"];
-    $user=strtolower($usr);
-    $pass=$_POST["password"];
-    $cpass=$_POST["cpass"];
-    $name=$_POST["name"];
+    $usr = $_POST["username"];
+    $user = strtolower($usr);
+    $pass = $_POST["password"];
+    $cpass = $_POST["cpass"];
+    $name = $_POST["name"];
 
     // echo $usr;
 
     $sql1 = "SELECT * from `users` where `username`='$user'";
-    $res1=mysqli_query($conn,$sql1);
-    $num=mysqli_num_rows($res1);
+    $res1 = mysqli_query($conn, $sql1);
+    $num = mysqli_num_rows($res1);
 
-    if($num>=1)
-    {
-        $exists=true;
+    if ($num >= 1) {
+        $exists = true;
     }
 
-    if(($pass==$cpass))
-    {
+    if (($pass == $cpass)) {
 
-       $hash = password_hash($pass,PASSWORD_DEFAULT);
-        if(!$exists)
-        {
+        $hash = password_hash($pass, PASSWORD_DEFAULT);
+        if (!$exists) {
             $sql = "INSERT INTO `users` (`username`,`name`, `password`) VALUES ('$user','$name','$hash')";
-            $res=mysqli_query($conn,$sql);
-    
-            if($res)
-            {
-               $show=true;
+            $res = mysqli_query($conn, $sql);
+
+            if ($res) {
+                $show = true;
             }
+        } else {
+            $err = "User with this username already exists,please try new one";
         }
-        else
-        {
-            $err="User with this username already exists,please try new one";
-        }
-       
-    }
-    else
-    {
-        $err="Password do not matches";
+    } else {
+        $err = "Password do not matches";
     }
 }
 
@@ -61,17 +52,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && $_POST["action"]=="signup") //for user 
                 <form action="/summaries/" method="POST">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="username" id="username"
-                         required   >
+                        <input type="text" class="form-control" name="username" id="username" required>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" required
-                        >
+                        <input type="text" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" required> 
+                        <input type="password" class="form-control" name="password" id="password" required>
                     </div>
                     <div class="mb-3">
                         <label for="cpass" class="form-label">Confirm Password</label>

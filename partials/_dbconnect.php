@@ -1,10 +1,10 @@
 <?php
 
 // Connecting to Database
-$servername = "sql202.epizy.com";
-$username = "epiz_27573365";
-$password= "6Ezdre364GkE66";
-$database = "epiz_27573365_summaries";
+$servername = "localhost";
+$username = "root";
+$password= "";
+$database = "summaries";
 
 // Create a Connection
 $conn = mysqli_connect($servername,$username,$password,$database);
@@ -13,4 +13,3 @@ if(!$conn)
 {
     echo "Sorry";
 }
-?>

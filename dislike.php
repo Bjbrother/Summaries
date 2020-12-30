@@ -32,6 +32,4 @@ else
   // echo $likes;
 }
 
-
-
 ?>

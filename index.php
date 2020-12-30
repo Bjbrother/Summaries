@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $by_id = $row["user_id"];
     }
 
-    $summ=str_replace("'",'"',$sum);
+    $summ = str_replace("'", '"', $sum);
 
 
     $sql = "SELECT * FROM `subjects` WHERE subject_title='$sub_title'";

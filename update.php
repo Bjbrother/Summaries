@@ -25,67 +25,60 @@
     $b_id = $_GET["b_id"];
     // var_dump($b_id);
 
-    if($_SERVER["REQUEST_METHOD"]=="POST")
-    {
-        $area=$_POST["summary"];
-        
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $area = $_POST["summary"];
+
         $sql = "UPDATE `books` SET `book_summary` = '$area' WHERE book_id='$b_id'";
-        $res = mysqli_query($conn,$sql);
-        
-        
-        if($res)
-        {
-           
-            echo "<script type='text/javascript'>window.top.location='index.php';</script>"; exit;
-        }
-        else
-        {
+        $res = mysqli_query($conn, $sql);
+
+
+        if ($res) {
+
+            echo "<script type='text/javascript'>window.top.location='index.php';</script>";
+            exit;
+        } else {
             echo "Sorry We Can't Updated it";
             // $change=0;
         }
 
         // echo $change;
-        
-    }
 
-   else
-   {
-    $sql="SELECT * FROM `books` WHERE `book_id`='$b_id'";
-    // echo $sql;
-    $res=mysqli_query($conn,$sql);
+    } else {
+        $sql = "SELECT * FROM `books` WHERE `book_id`='$b_id'";
+        // echo $sql;
+        $res = mysqli_query($conn, $sql);
 
-    $by_id = $_GET["by_id"];
-    $sql2 = "SELECT * FROM `users` WHERE user_id ='$by_id'";
-    $res2 = mysqli_query($conn, $sql2);
-    while ($row2 = mysqli_fetch_assoc($res2)) {
-        $by_name = $row2["username"];
-    }
+        $by_id = $_GET["by_id"];
+        $sql2 = "SELECT * FROM `users` WHERE user_id ='$by_id'";
+        $res2 = mysqli_query($conn, $sql2);
+        while ($row2 = mysqli_fetch_assoc($res2)) {
+            $by_name = $row2["username"];
+        }
 
-    while($row=mysqli_fetch_assoc($res))
-    {
-        $b_summary=$row["book_summary"];
-    }
+        while ($row = mysqli_fetch_assoc($res)) {
+            $b_summary = $row["book_summary"];
+        }
 
-    session_start();
-    if ($_SESSION["username"] == $by_name) {
-        echo ' <form method="post" action="'.$_SERVER['REQUEST_URI']. '" >
+        session_start();
+        if ($_SESSION["username"] == $by_name) {
+            echo ' <form method="post" action="' . $_SERVER['REQUEST_URI'] . '" >
     
 
     <div class="form-group">
-        <label for="summary" class="display-6 text-center lead">Update Summary</label>
-        <textarea class="form-control my-1" id="summary" name="summary">'.$b_summary.'</textarea>
+        <label for="summary" class="h4 text-center lead">Update Summary</label>
+        <textarea class="form-control my-1" id="summary" name="summary">' . $b_summary . '</textarea>
     </div>
     <div class="
 text-center">
         <button type="submit" class="btn btn-success my-2">Post</button>
     </div></form>';
-    } else {
+        } else {
+        }
     }
-   }
 
 
-  
-    
+
+
     ?>
 </body>
 
