@@ -2,7 +2,7 @@
 
 session_start();
 $added = false;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"]=="write") {
     include 'partials/_dbconnect.php';
     $b_title = $_POST["book"];
     $sub_title = $_POST["sub"];
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $by_id = $row["user_id"];
     }
 
-    $summ = str_replace("'", '"', $sum);
+    $summ=str_replace("'",'"',$sum);
 
 
     $sql = "SELECT * FROM `subjects` WHERE subject_title='$sub_title'";
@@ -191,6 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label for="summary">Book Summary</label>
                 <textarea class="form-control my-1" id="summary" name="summary" rows="12" placeholder="write here.."></textarea>
+                <input type="hidden" name="action" value="write">
             </div>
             <div class="
    text-center">

@@ -30,7 +30,6 @@
         $b_name=$row["book_title"];
         $sum=$row["book_summary"];
         $like=$row["likes"];
-        // echo var_dump($like);
         echo '<div class="container">
         <div class="media border m-2">
         <div class="media-body p-3">

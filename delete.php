@@ -7,6 +7,8 @@ $sql = "DELETE FROM `books`  WHERE book_id='$b_id'";
 $res = mysqli_query($conn,$sql);
 $aff = mysqli_affected_rows($conn);
 // echo $aff;
+$sql4="DELETE FROM `likd` WHERE `user_id`='$by_id' and `book_id`='$b_id'";
+$res4 = mysqli_query($conn,$sql4);
 
 if($res)
 {

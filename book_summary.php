@@ -16,6 +16,7 @@ echo '<div class="container my-4">
         <hr class="my-5">
     </div>
 </div>';
+
 while ($row = mysqli_fetch_assoc($res)) {
     $book_id = $row["book_id"];
     // echo $book_id;
@@ -27,6 +28,7 @@ while ($row = mysqli_fetch_assoc($res)) {
     while ($row2 = mysqli_fetch_assoc($res2)) {
         $by_name = $row2["username"];
     }
+
     echo ' <div class="container">
    <div class="media border m-2">
 <div class="media-body p-3">
