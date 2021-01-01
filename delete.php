@@ -7,8 +7,16 @@ $sql = "DELETE FROM `books`  WHERE book_id='$b_id'";
 $res = mysqli_query($conn,$sql);
 $aff = mysqli_affected_rows($conn);
 // echo $aff;
+$by_name = $_SESSION["username"];
+
+    $sql = "SELECT * FROM `users` WHERE username='$by_name'";
+    $res = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($res)) {
+        $by_id = $row["user_id"];
+    }
+
 $sql4="DELETE FROM `likd` WHERE `user_id`='$by_id' and `book_id`='$b_id'";
-$res4 = mysqli_query($conn,$sql4);
+ $res4 = mysqli_query($conn,$sql4);
 
 if($res)
 {
